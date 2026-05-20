@@ -22,6 +22,11 @@ function render(repos, filter){
     });
 }
 
+input.addEventListener('input', event =>{
+    const text = event.target.value
+    render(allRepositories, text)
+})
+
 fetch('https://api.github.com/users/arthurfellype/repos')
 .then(res => res.json())
 .then(repos => {
