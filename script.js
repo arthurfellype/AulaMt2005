@@ -3,7 +3,7 @@
 const input = document.querySelector('.input-text');
 const ul = document.querySelector('.repos');
 
-const allRepositories = []
+let allRepositories = []
 
 function render(repos, filter){
     ul.innerHTML = '';
@@ -14,10 +14,17 @@ function render(repos, filter){
         }
         return true
     })
-    filteredRepos.array.forEach(repo => {
+    filteredRepos.forEach(repo => {
         const li = document.createElement('li')
         const textItem = document.createTextNode(repo.name)
         li.appendChild(textItem)
         ul.appendChild(li)
     });
 }
+
+fetch('https://api.github.com/users/arthurfellype/repos')
+.then(res => res.json())
+.then(repos => {
+    allRepositories = repos
+    render(allRepositories, '')
+})
