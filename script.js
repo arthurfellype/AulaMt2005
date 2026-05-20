@@ -14,4 +14,10 @@ function render(repos, filter){
         }
         return true
     })
+    filteredRepos.array.forEach(repo => {
+        const li = document.createElement('li')
+        const textItem = document.createTextNode(repo.name)
+        li.appendChild(textItem)
+        ul.appendChild(li)
+    });
 }
